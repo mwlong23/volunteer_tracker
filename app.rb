@@ -35,10 +35,10 @@ end
 
 post("/volunteers") do
   name = params.fetch("name")
-  list_id = params.fetch("project_id").to_i()
-  id = params.fetch("id").to_i
+  project_id = params.fetch("project_id").to_i()
+  project_id = params.fetch("project_id").to_i
   @project = Project.find(project_id)
-  @volunteer = Volunteer.new({:name => name, :list_id => list_id, :id => id})
+  @volunteer = Volunteer.new({:name => name, :project_id => project_id, :id => nil})
   @volunteer.save()
-  erb(:success)
+  erb(:project)
 end

@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+
 .jumbotron {
-  background-color: red;
-  
+  background-color: #4A6B8A;
+  font-family: 'Montserrat', sans-serif;
+  color: #BCD1E3;
+
+}
+body{
+  background-color: #BCD1E3;
 }

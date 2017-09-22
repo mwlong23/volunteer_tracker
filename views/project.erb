@@ -15,26 +15,28 @@
 <% end %>
 
 <div class="container">
-  <a href="/"><button class="btn">Home</button></a>
+
 
 </div>
 
-<h3>Add a task to <%= @project.title() %></h3>
+<h3>Add a Volunteer to <%= @project.title() %></h3>
 
 <form action="/volunteers" method="post">
-  <input id="project_id" name="project_id" value=" <%= @project.id() %>">
+  <input type="hidden" id="project_id" name="project_id" value=" <%= @project.id() %>">
 
-  <label for="title">Description of the project:</label>
-  <input id="title" name="title" type ="text">
-  <button type="submit" class="btn">Add task</button>
+  <label for="name">Full Name</label>
+  <input id="name" name="name" type ="text">
+
+  <br>
+  <br>
+
+  <button type="submit" class="btn">Add Volunteer</button>
 </form>
 
 <br>
 
 <div class="container">
-
-  <a href="/">home</a>
-  <a href="/projects">View All projects</a>
-  <a href="/projects/new">Add New project</a>
-  <a href="/projects/new">Add New volunteer</a>
+  <a href="/"><button class="btn">Home</button></a>
+  <a href="/projects"><button class="btn">View all projects</button></a>
+  <a href="/projects/new"><button class="btn">Add New Project</button></a>
 </div>
