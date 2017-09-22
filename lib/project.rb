@@ -6,6 +6,7 @@ class Project
     @id = attributes.fetch(:id)
   end
 
+
   def ==(another_project)
     self.title().==(another_project.title()).&(self.id().==(another_project.id()))
   end
@@ -25,6 +26,16 @@ class Project
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id")
     @id = result.first().fetch("id").to_i
   end
+
+  def self.find(id)
+  found_project = nil
+  Project.all().each() do |project|
+    if project.id().==(id)
+      found_project = project
+    end
+  end
+  found_project
+end
 
 
 end
