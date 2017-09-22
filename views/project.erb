@@ -1,0 +1,40 @@
+<h1><%= @project.title() %></h1>
+
+<% if @project.volunteers().any?() %>
+  <h3>Here are all the Volunteers in this list:</h3>
+
+  <ul>
+    <% @project.volunteers().each() do |volunteer| %>
+      <li><%= volunteer.name() %> </li>
+    <% end %>
+
+  </ul>
+
+<% else %>
+  <p>There are no volunteers on this list!</p>
+<% end %>
+
+<div class="container">
+  <a href="/"><button class="btn">Home</button></a>
+
+</div>
+
+<h3>Add a task to <%= @project.title() %></h3>
+
+<form action="/volunteers" method="post">
+  <input id="project_id" name="project_id" value=" <%= @project.id() %>">
+
+  <label for="title">Description of the project:</label>
+  <input id="title" name="title" type ="text">
+  <button type="submit" class="btn">Add task</button>
+</form>
+
+<br>
+
+<div class="container">
+
+  <a href="/">home</a>
+  <a href="/projects">View All projects</a>
+  <a href="/projects/new">Add New project</a>
+  <a href="/projects/new">Add New volunteer</a>
+</div>
