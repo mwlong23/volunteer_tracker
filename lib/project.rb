@@ -28,14 +28,27 @@ class Project
   end
 
   def self.find(id)
-  found_project = nil
-  Project.all().each() do |project|
-    if project.id().==(id)
-      found_project = project
+    found_project = nil
+    Project.all().each() do |project|
+      if project.id().==(id)
+        found_project = project
+      end
     end
+    found_project
   end
-  found_project
-end
+
+  def volunteers
+    project_volunteers = []
+    projects = DB.exec("SELECT * FROM volunteers WHERE project_id = '#{self.id()}';")
+    projects.each() do |project|
+      name = project.fetch("name")
+      project_id = project.fetch("project_id").to_i
+      project_volunteers.push(Volunteer.new(name: name, project_id: project_id, id: nil))
+    end
+    project_volunteers
+  end
+
+
 
 
 end

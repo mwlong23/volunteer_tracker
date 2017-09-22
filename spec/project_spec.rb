@@ -61,7 +61,17 @@ require "spec_helper"
     end
   end
 
-  
+  describe '#==' do
+    it 'is the same volunteer if two volunteers have the same name and id' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => project.id, :id => nil})
+      volunteer2 = Volunteer.new({:name => 'Jasmine', :project_id => project.id, :id => nil})
+      expect(volunteer1 == volunteer2).to eq true
+    end
+  end
+
+
   describe '#volunteers' do
     it 'returns all volunteers for a specific project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
