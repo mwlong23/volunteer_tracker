@@ -6,11 +6,6 @@ class Project
     @id = attributes.fetch(:id)
   end
 
-
-  def ==(another_project)
-    self.title().==(another_project.title()).&(self.id().==(another_project.id()))
-  end
-
   def self.all
     returned_projects = DB.exec('SELECT * FROM projects;')
     projects = []
@@ -21,6 +16,13 @@ class Project
     end
     projects
   end
+
+
+  def ==(another_project)
+    self.title().==(another_project.title()).&(self.id().==(another_project.id()))
+  end
+
+
 
   def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id")
@@ -46,6 +48,12 @@ class Project
       project_volunteers.push(Volunteer.new(name: name, project_id: project_id, id: nil))
     end
     project_volunteers
+  end
+
+  def update(attributes)
+    @title = attributes.fetch(:title, @title)
+    @id = self.id()
+    result = DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = '#{@id}' ;")
   end
 
 

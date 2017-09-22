@@ -83,22 +83,22 @@ require "spec_helper"
       expect(project.volunteers).to eq [volunteer1, volunteer2]
     end
   end
-  #
-  # describe '#update' do
-  #   it 'allows a user to update a project' do
-  #     project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-  #     project.save
-  #     project.update({:title => 'Teaching Ruby to Kids', :id => nil})
-  #     expect(project.title).to eq 'Teaching Ruby to Kids'
-  #   end
-  # end
-  #
-  # context '#delete' do
-  #   it 'allows a user to delete a project' do
-  #     project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-  #     project.save
-  #     project.delete
-  #     expect(Project.all).to eq []
-  #   end
-  # end
+
+  describe '#update' do
+    it 'allows a user to update a project' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      project.update({:title => 'Teaching Ruby to Kids', :id => nil})
+      expect(project.title).to eq 'Teaching Ruby to Kids'
+    end
+  end
+  
+  context '#delete' do
+    it 'allows a user to delete a project' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      project.delete
+      expect(Project.all).to eq []
+    end
+  end
 end
