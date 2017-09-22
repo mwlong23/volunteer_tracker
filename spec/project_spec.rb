@@ -29,10 +29,10 @@ require "spec_helper"
     end
   end
 
-  # context '.all' do
-  #   it 'is empty to start' do
-  #     expect(Project.all).to eq []
-  #   end
+  context '.all' do
+    it 'is empty to start' do
+      expect(Project.all).to eq []
+    end
   #
   #   it 'returns all projects' do
   #     project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
@@ -90,4 +90,4 @@ require "spec_helper"
   #     expect(Project.all).to eq []
   #   end
   # end
-# end
+end

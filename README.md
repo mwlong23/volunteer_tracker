@@ -14,12 +14,12 @@ _A Ruby Script_
 
 ## Specifications
 
-* Program
-  * example input:
-  * Example output:
-* Program
-  * example input:
-  * Example output:
+* Program will check if two projects have the same title.
+  * example input: project1 == project2
+  * Example output: true
+* Program makes sure our list of projects is empty to start with.
+  * example input: Project.all
+  * Example output: []
 * Program
   * example input:
   * Example output:
