@@ -1,5 +1,17 @@
 <h1><%= @project.title() %></h1>
 
+<div class="container clearfix">
+  <a href="/"><button class="btn btn-info pull-left">Home</button></a>
+  <a href="/projects"><button class="btn btn-info pull-left">View all projects</button></a>
+  <a href="/projects/new"><button class="btn btn-warning pull-left">Add New Project</button></a>
+  <a href="/project/edit/<%=@project.id%>"><button class="btn btn-success pull-left">Edit Project</button></a>
+  <form class="form-group" action="/projects/<%=@project.id%> " method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn button btn-danger pull-left">Delete This List</button>
+
+  </form>
+</div>
+
 <% if @project.volunteers().any?() %>
   <h3>Here are all the Volunteers in this list:</h3>
 
@@ -7,17 +19,12 @@
     <% @project.volunteers().each() do |volunteer| %>
       <li><%= volunteer.name() %> </li>
     <% end %>
-
   </ul>
 
 <% else %>
   <p>There are no volunteers on this list!</p>
 <% end %>
 
-<div class="container">
-
-
-</div>
 
 <h3>Add a Volunteer to <%= @project.title() %></h3>
 
@@ -34,9 +41,3 @@
 </form>
 
 <br>
-
-<div class="container">
-  <a href="/"><button class="btn">Home</button></a>
-  <a href="/projects"><button class="btn">View all projects</button></a>
-  <a href="/projects/new"><button class="btn">Add New Project</button></a>
-</div>

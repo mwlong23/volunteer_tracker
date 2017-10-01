@@ -4,6 +4,7 @@ also_reload("lib/**/*.rb")
 require("./lib/project")
 require("./lib/volunteer")
 require("pg")
+require('pry')
 
 DB = PG.connect({:dbname => "volunteer_tracker"})
 
@@ -22,8 +23,16 @@ get("/projects/new") do
 end
 
 get("/projects/:id") do
+  # binding.pry
   @project = Project.find(params.fetch("id").to_i())
   erb(:project)
+end
+
+delete("/projects/:id") do
+  @project = Project.find(params["id"].to_i)
+  @project.delete
+  @projects = Project.all
+  redirect '/projects'
 end
 
 post("/projects") do
@@ -33,6 +42,23 @@ post("/projects") do
   erb(:success)
 end
 
+get("/project/edit/:id") do
+  @project = Project.find(params['id'].to_i)
+  @projects = Project.all
+  # binding.pry
+  erb(:project_edit)
+end
+
+patch("/project/edit/:id") do
+
+  new_project_name = params.fetch("title")
+  binding.pry
+  @project = Project.find(params["id"].to_i)
+  @project.update({title: new_project_name})
+  redirect('/projects')
+end
+
+
 post("/volunteers") do
   name = params.fetch("name")
   project_id = params.fetch("project_id").to_i()
@@ -40,5 +66,5 @@ post("/volunteers") do
   @project = Project.find(project_id)
   @volunteer = Volunteer.new({:name => name, :project_id => project_id, :id => nil})
   @volunteer.save()
-  erb(:project)
+  redirect("/projects/#{project_id}")
 end
