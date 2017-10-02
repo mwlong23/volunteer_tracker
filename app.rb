@@ -10,7 +10,7 @@ DB = PG.connect({:dbname => "volunteer_tracker"})
 
 
 get("/") do
-  erb(:index)
+  redirect('/projects')
 end
 
 get("/projects") do
@@ -39,20 +39,19 @@ post("/projects") do
   title = params.fetch("title")
   project = Project.new({:title => title, :id => nil})
   project.save()
-  erb(:success)
+  redirect('/projects')
 end
 
 get("/project/edit/:id") do
   @project = Project.find(params['id'].to_i)
   @projects = Project.all
-  # binding.pry
   erb(:project_edit)
 end
 
 patch("/project/edit/:id") do
 
   new_project_name = params.fetch("title")
-  binding.pry
+
   @project = Project.find(params["id"].to_i)
   @project.update({title: new_project_name})
   redirect('/projects')

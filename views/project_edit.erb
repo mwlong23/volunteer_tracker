@@ -1,7 +1,8 @@
 <form class="form-group" action="/project/edit/<%=@project.id%>" method="post">
   <input name="_method" type="hidden" value="patch">
 
-  <label class="form-label" for='name'>Enter a new project name:</label>
+  <label class="form-label" for='title'>Enter a new project name:</label>
   <input class="form-control" id = "title" name="title" type="text" placeholder="Project name" autofocus>
-  <button type="submit">submit</button>
+  <br>
+  <button type="submit" class="btn btn-info">submit</button>
 </form>
